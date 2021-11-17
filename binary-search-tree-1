@@ -1,0 +1,21 @@
+Link: https://www.hackerrank.com/challenges/binary-search-tree-1/problem?isFullScreen=true
+
+You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, and P is the parent of N.
+
+SQL:
+/*
+Enter your query here.
+Please append a semicolon ";" at the end of the query and enter your query in a single line to avoid error.
+*/
+
+select N,
+case
+when
+(select count(*) from bst a where b.p is null and a.n=b.n)=1 then 'Root'
+when 
+(select count(*) from bst a where a.p=b.n)=0 then 'Leaf'
+when 
+(select count(*) from bst a where a.p=b.n)>0 then 'Inner'
+end P
+from BST b
+order by 1;
