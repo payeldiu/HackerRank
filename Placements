@@ -1,0 +1,16 @@
+ou are given three tables: Students, Friends and Packages. Students contains two columns: ID and Name. 
+Friends contains two columns: ID and Friend_ID (ID of the ONLY best friend). 
+Packages contains two columns: ID and Salary (offered salary in $ thousands per month).
+
+
+select name_1 from (
+  select id ,
+ (select  name from students where id=friends.id) name_1,
+ Friend_ID ,
+ (select  name from students where id=Friend_ID ) name_2,
+  (select  salary from Packages  s where friends.id=s.ID) s1,
+  (select  salary from Packages  where id=Friend_ID ) s2
+ from friends
+  )
+    where s2>s1
+    order by s2;
